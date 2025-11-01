@@ -7,7 +7,7 @@ $email = $_POST['email'];
 $senha = $_POST['senha'];
 
 
-$consulta = "SELECT * FROM usuario WHERE email = :email AND senha = :senha";
+$consulta = "SELECT * FROM usuarios WHERE email = :email AND senha = :senha";
 
 $stmt = $pdo->prepare($consulta);
 $stmt->bindParam(':email', $email);
@@ -22,12 +22,12 @@ if ($stmt->rowCount() == 1) {
     $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
 
     
-    $_SESSION['id'] = $resultado['id'];
+    $_SESSION['idUsuario'] = $resultado['idUsuario'];
     $_SESSION['nome'] = $resultado['nome'];
     $_SESSION['email'] = $resultado['email'];
 
     echo "AQUI";
-    header('Location: painel.php'); // Página de acesso restrito após login
+    header('Location: principal.php'); // Página de acesso restrito após login
     exit;
     
 } else {
