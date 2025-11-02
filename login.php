@@ -11,10 +11,19 @@
 
 <body>
 <?php include __DIR__ . '/includes/header.php'; ?>
+<?php session_start(); ?>
 
     <div class="container">
         <div class="login-card">
             <h1>Entrar</h1>
+
+            <!-- Mensagem de erro -->
+            <?php
+            if (isset($_SESSION['erro'])) {
+                echo "<p style='color: red; text-align:center; margin-bottom:10px;'>".$_SESSION['erro']."</p>";
+                unset($_SESSION['erro']); // remove depois de mostrar
+            }
+            ?>
 
             <!-- Formulário de login -->
             <form action="processa_login.php" method="POST">
